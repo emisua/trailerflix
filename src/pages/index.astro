@@ -12,11 +12,7 @@ const movies = await getMovies();
   </header>
   <main class="container mx-auto">
     <ul role="list" class="grid grid-cols-4 gap-4">
-      {
-        movies?.map((movie) => {
-          return <Card movie={movie} />;
-        })
-      }
+      {movies?.map((movie) => <Card movie={movie} />)}
     </ul>
   </main>
 </Layout>
