@@ -7,8 +7,8 @@ export interface Api_Response {
 }
 
 export interface Dates {
-  maximum: Date;
-  minimum: Date;
+  maximum: string;
+  minimum: string;
 }
 
 export interface Movie {
@@ -21,9 +21,14 @@ export interface Movie {
   overview: string;
   popularity: number;
   poster_path: string;
-  release_date: Date;
+  release_date: string;
   title: string;
   video: boolean;
   vote_average: number;
   vote_count: number;
+}
+
+export interface State {
+  movieList: Movie[];
+  setMovieList: (movies: Movie[]) => void;
 }

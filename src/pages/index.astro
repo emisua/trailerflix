@@ -1,18 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
-import { getMovies } from "../api/upcomingMovies";
-
-const movies = await getMovies();
+import Header from "../components/Header.astro";
+import MovieList from "../components/MovieList";
 ---
 
-<Layout title="Welcome to Astro.">
-  <header class="py-8">
-    <h1 class="font-bold text-2xl text-white">Astroflix</h1>
+<Layout title="TrailersFLix">
+  <header class="pb-8">
+    <Header />
   </header>
   <main class="container mx-auto">
-    <ul role="list" class="grid grid-cols-4 gap-4">
-      {movies?.map((movie) => <Card movie={movie} />)}
-    </ul>
+    <MovieList client:load />
   </main>
 </Layout>
