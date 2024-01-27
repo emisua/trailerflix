@@ -1,9 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro'
-import MovieList from '../components/MovieList.astro'
-import { getMovies } from '../api/api'
-
-const movieList = await getMovies()
+import { getMovieByTitle } from '../../api/api'
+import MovieList from '../../components/MovieList.astro'
+import Layout from '../../layouts/Layout.astro'
+const { title } = Astro.params
+const movieList = await getMovieByTitle(title!)
 ---
 
 <Layout title='TrailersFLix'>
