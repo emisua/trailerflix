@@ -1,0 +1,16 @@
+---
+import type { Movie } from '../types/types'
+import MovieCard from './MovieCard'
+
+interface Props {
+  movieList: Movie[]
+}
+const { movieList } = Astro.props
+---
+
+<ul
+  role='list'
+  class='grid grid-cols-4 gap-4'
+>
+  {movieList?.map((movie) => <MovieCard movie={movie} />)}
+</ul>

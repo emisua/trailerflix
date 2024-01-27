@@ -1,14 +1,23 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import MovieList from "../components/MovieList";
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import MovieList from '../components/MovieList.astro'
+import { getMovies } from '../api/api'
+
+const movieList = await getMovies()
 ---
 
-<Layout title="TrailersFLix">
-  <header class="pb-8">
+<Layout title='TrailersFLix'>
+  <header class='pb-8'>
     <Header />
   </header>
-  <main class="container mx-auto">
-    <MovieList client:load />
+  <main class='container mx-auto'>
+    {
+      movieList ? (
+        <MovieList movieList={movieList} />
+      ) : (
+        <p>No hay peliculas para mostrar</p>
+      )
+    }
   </main>
 </Layout>
