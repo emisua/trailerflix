@@ -21,10 +21,10 @@ const SearchInput = () => {
         onChange={(e) => {
           setMovieTitle(e.target.value);
         }}
-        className="text-neutral-300 text-opacity-60 rounded-tl rounded-bl px-2 py-1 bg-neutral-700/90 backdrop-blur-sm text-sm "
+        className="text-neutral-300 rounded-tl rounded-bl px-2 py-1 bg-neutral-700/60 backdrop-blur-sm text-sm "
       />
       <button
-        className="bg-red-500/30 backdrop-blur-sm px-2 py-1 text-neutral-300 rounded-tr rounded-br text-sm"
+        className="bg-red-500/50 backdrop-blur-sm px-2 py-1 text-neutral-300 rounded-tr rounded-br text-sm"
         type="submit"
       >
         <SearchIcon className="w-4 h-4" />

@@ -65,7 +65,13 @@ console.log(movie);
         >
           <PlayIcon className="w-16 fill-white stroke-none" />
         </div>
-        <RotatedDetailCard category="RELEASE" text={movie.release_date} />
+        <RotatedDetailCard
+          category="RELEASE"
+          text={new Date(movie.release_date).toLocaleString("es-ES", {
+            timeZone: "UTC",
+            dateStyle: "short",
+          })}
+        />
         <RotatedDetailCard
           category="BUDGET"
           text={movie.budget.toLocaleString("es-ES", {
@@ -75,7 +81,7 @@ console.log(movie);
             maximumFractionDigits: 0,
           })}
         />
-        <RotatedDetailCard category="DURATION" text={movie.runtime} />
+        <RotatedDetailCard category="DURATION" text={`${movie.runtime} min`} />
       </section>
     </div>
   </div>
