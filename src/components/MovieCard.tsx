@@ -5,7 +5,7 @@ interface Props {
 }
 
 const MovieCard = ({ movie }: Props) => {
-  const movieURL = `https://image.tmdb.org/t/p/w500/${movie?.poster_path}`;
+  const movieURL = `https://image.tmdb.org/t/p/w300${movie?.poster_path}`;
 
   return (
     <li className="text-neutral-300 flex flex-col md:gap-4 gap-2">
