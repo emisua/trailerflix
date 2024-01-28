@@ -1,4 +1,4 @@
-import type { Api_Response } from '../types/types'
+import type { Api_Response, MovieDetails } from '../types/types'
 
 const bearerKey: string = import.meta.env.BEARER_KEY
 
@@ -33,4 +33,13 @@ export async function getMovieByTitle(name: string) {
 
   const movies: Api_Response = await response.json()
   return movies?.results
+}
+
+export async function getMovieByID(id: string) {
+  const response = await fetch(
+    `${PREFIX_URL}/movie/${id}?${LANGUAGE}${PAGE}`,
+    options
+  )
+  const movie: MovieDetails = await response.json()
+  return movie
 }
