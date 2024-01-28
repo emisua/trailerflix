@@ -8,7 +8,7 @@ const MovieCard = ({ movie }: Props) => {
   const movieURL = `https://image.tmdb.org/t/p/w500/${movie?.poster_path}`;
 
   return (
-    <li className="text-neutral-300 flex flex-col gap-4">
+    <li className="text-neutral-300 flex flex-col md:gap-4 gap-2">
       <a href={`/details/${movie.id}`} className="cursor-pointer">
         <img
           src={movieURL}

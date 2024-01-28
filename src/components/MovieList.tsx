@@ -15,7 +15,7 @@ const MovieList = ({ movieList }: Props) => {
   return (
     <ul
       role="list"
-      className="grid grid-cols-[repeat(auto-fill, minmax(200px, 1fr) )] gap-4"
+      className="grid grid-cols-[repeat(auto-fill,minmax(50px, 1fr))] grid-cols-2 gap-4"
     >
       {movieList?.map((movie) => (
         <MovieCard movie={movie} key={movie.id} />

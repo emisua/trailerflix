@@ -1,8 +1,8 @@
 ---
-import Layout from "../../layouts/Layout.astro";
 import { getMovieByID } from "../../api/api";
 import RotatedDetailCard from "../../components/RotatedDetailCard.astro";
 import PlayIcon from "../../icons/PlayIcon.astro";
+import LayoutDetail from "../../layouts/LayoutDetail.astro";
 
 const { id } = Astro.params;
 const movie = await getMovieByID(id!);
@@ -27,7 +27,7 @@ function voteColor(note: number): string {
 console.log(movie);
 ---
 
-<Layout title={movie.original_title}>
+<LayoutDetail title={movie.original_title}>
   <div
     class={`min-h-[32rem] w-full flex gap-4 items-bottom justify-end flex-col px-4 md:pb-16 pb-4`}
     style={{
@@ -116,4 +116,4 @@ console.log(movie);
       </div>
     </article>
   </section>
-</Layout>
+</LayoutDetail>

@@ -11,7 +11,7 @@ const SearchInput = () => {
 
   return (
     <form
-      className="flex"
+      className="flex flex-1"
       onSubmit={(e) => searchMovie(e)}
       //action={`/search?=${movieTitle}`}
     >
@@ -21,7 +21,7 @@ const SearchInput = () => {
         onChange={(e) => {
           setMovieTitle(e.target.value);
         }}
-        className="text-neutral-300 rounded-tl rounded-bl px-2 py-1 bg-neutral-700/60 backdrop-blur-sm text-sm "
+        className="text-neutral-300 rounded-tl rounded-bl px-2 py-1 bg-neutral-700/60 backdrop-blur-sm text-sm w-36 flex-1"
       />
       <button
         className="bg-red-500/50 backdrop-blur-sm px-2 py-1 text-neutral-300 rounded-tr rounded-br text-sm"
