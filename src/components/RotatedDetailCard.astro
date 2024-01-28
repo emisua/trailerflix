@@ -3,14 +3,14 @@ const { category, text } = Astro.props;
 ---
 
 <div
-  class="flex text-neutral-300 gap-0 p-4 md:min-h-[120px] items-center justify-center content-center rounded-2xl bg-neutral-300/20 backdrop-blur-sm flex-col md:flex-row"
+  class="flex text-neutral-300 gap-0 md:p-4 md:min-h-[120px] items-center justify-center content-center rounded-2xl bg-neutral-300/20 backdrop-blur-sm flex-col md:flex-row"
 >
   <span
     class="md:-rotate-90 text-xs md:w-8 flex items-center justify-center opacity-50 tracking-widest"
     >{category}</span
   >
   <h4
-    class="md:flex-1 md:text-2xl font-black justify-center items-center text-center"
+    class="md:flex-1 md:text-2xl md:font-black justify-center items-center text-center"
   >
     {text}
   </h4>
