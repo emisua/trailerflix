@@ -1,11 +1,11 @@
 //import { useEffect } from 'react'
 //import { getMovies } from '../api/api'
 //import { useMoviesStore } from '../store/store'
-import MovieCard from './MovieCard'
-import type { Movie } from '../types/types'
+import MovieCard from "./MovieCard";
+import type { Movie } from "../types/types";
 
 interface Props {
-  movieList: Movie[]
+  movieList: Movie[];
 }
 
 const MovieList = ({ movieList }: Props) => {
@@ -14,17 +14,14 @@ const MovieList = ({ movieList }: Props) => {
 
   return (
     <ul
-      role='list'
-      className='grid grid-cols-[repeat(auto-fill, minmax(200px, 1fr) )] gap-4'
+      role="list"
+      className="grid grid-cols-[repeat(auto-fill, minmax(200px, 1fr) )] gap-4"
     >
       {movieList?.map((movie) => (
-        <MovieCard
-          movie={movie}
-          key={movie.id}
-        />
+        <MovieCard movie={movie} key={movie.id} />
       ))}
     </ul>
-  )
-}
+  );
+};
 
-export default MovieList
+export default MovieList;

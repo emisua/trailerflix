@@ -29,7 +29,7 @@ console.log(movie);
 
 <Layout title={movie.original_title}>
   <div
-    class={`min-h-[32rem] w-full flex gap-4 items-bottom justify-end flex-col px-8 pb-16`}
+    class={`min-h-[32rem] w-full flex gap-4 items-bottom justify-end flex-col px-4 md:pb-16 pb-4`}
     style={{
       background: `linear-gradient(hsla(0, 0%, 4%, .1), hsla(0, 0%, 4%, 1)), url(${movieURL})`,
       backgroundPosition: "top center",
@@ -37,7 +37,7 @@ console.log(movie);
     }}
   >
     <div class="container mx-auto flex flex-col gap-4 max-w-screen-lg">
-      <h1 class="text-white text-4xl font-bold flex flex-col">
+      <h1 class="text-white text-4xl font-bold flex flex-col uppercase oswald">
         {movie.title}
         {
           movie.title !== movie.original_title && (
@@ -59,11 +59,11 @@ console.log(movie);
           ))
         }
       </div>
-      <section class="grid grid-cols-4 gap-4">
+      <section class="grid grid-cols-4 md:grid-cols-4 gap-4">
         <div
-          class="flex text-neutral-300 gap-4 border-2 p-4 min-h-[120px] items-center justify-center content-center rounded-2xl bg-red-600/60 backdrop-blur-lg"
+          class="flex text-neutral-300 gap-0 p-4 md:min-h-[120px] items-center justify-center content-center rounded-2xl bg-red-600/60 backdrop-blur-sm flex-col md:flex-row"
         >
-          <PlayIcon className="w-16 fill-white stroke-none" />
+          <PlayIcon className="md:w-16 w-6 fill-white stroke-none" />
         </div>
         <RotatedDetailCard
           category="RELEASE"
@@ -86,15 +86,15 @@ console.log(movie);
     </div>
   </div>
 
-  <div class="container mx-auto max-w-screen-lg">
-    <article class="flex gap-8">
-      <div class="overview w-8/12 flex md:flex-col gap-3">
+  <section class="container mx-auto max-w-screen-lg">
+    <article class="flex gap-8 p-4 md:flex-row flex-col">
+      <div class="overview md:w-8/12 flex flex-col gap-3">
         <span class="text-neutral-300/50 text-lg tracking-widest"
           >DESCRIPTION</span
         >
         <p class="text-neutral-300">{movie.overview}</p>
       </div>
-      <div class="rates w-4/12 flex flex-col gap-3">
+      <div class="rates md:w-4/12 flex flex-col gap-3">
         <span class="text-neutral-300/50 text-lg tracking-widest">HYPE</span>
         <section class="votes text-neutral-300 flex gap-4">
           <div
@@ -115,5 +115,5 @@ console.log(movie);
         </section>
       </div>
     </article>
-  </div>
+  </section>
 </Layout>
