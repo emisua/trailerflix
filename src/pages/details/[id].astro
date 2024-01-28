@@ -1,17 +1,78 @@
 ---
-import Layout from '../../layouts/Layout.astro'
-import { getMovieByID } from '../../api/api'
+import Layout from "../../layouts/Layout.astro";
+import { getMovieByID } from "../../api/api";
 
-const { id } = Astro.params
-const movie = await getMovieByID(id!)
+const { id } = Astro.params;
+const movie = await getMovieByID(id!);
 
-const movieURL = `https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`
+const movieURL = `https://image.tmdb.org/t/p/original${movie?.backdrop_path}`;
+
+function voteColor(note: number) {
+  const realNote = Math.floor(note);
+  if (realNote === 1) return "bg-red-900";
+  if (realNote === 2) return "bg-red-800";
+  if (realNote === 3) return "bg-red-700";
+  if (realNote === 4) return "bg-red-600";
+  if (realNote === 5) return "bg-orange-500";
+  if (realNote === 6) return "bg-green-700";
+  if (realNote === 7) return "bg-green-600";
+  if (realNote === 8) return "bg-green-500";
+  if (realNote === 9) return "bg-green-500";
+  if (realNote === 10) return "bg-green-500";
+}
+
+console.log(movie);
 ---
 
 <Layout title={movie.original_title}>
   <div
-    class={`min-h-[20rem] bg-[url('${movieURL}')] w-full bg-no-repeat bg-cover bg-center`}
+    class={`min-h-[32rem] w-full flex gap-4 items-bottom justify-end flex-col px-8 pb-12`}
+    style={{
+      background: `linear-gradient(hsla(0, 0%, 4%, .1), hsla(0, 0%, 4%, 1)), url(${movieURL})`,
+      backgroundPosition: "top center",
+      backgroundSize: "cover",
+    }}
   >
+    <h1 class="text-white text-4xl font-bold flex flex-col">
+      {movie.title}<br /><span class="text-xl text-neutral-300/50 font-normal"
+        >({movie.original_title})</span
+      >
+    </h1>
+    <div class="genres flex gap-2">
+      {
+        movie.genres.map((genre) => (
+          <div class="border flex rounded bg-neutral-300/10 py-1 px-2 text-xs backdrop-blur-sm text-neutral-300">
+            {genre.name}
+          </div>
+        ))
+      }
+    </div>
   </div>
-  <h1 class='text-white'>{movie.original_title}</h1>
+  <article class="p-8 flex gap-8">
+    <div class="overview w-8/12 flex flex-col gap-3">
+      <span class="text-neutral-300/50 text-lg tracking-widest"
+        >DESCRIPTION</span
+      >
+      <p class="text-neutral-300">{movie.overview}</p>
+    </div>
+    <div class="rates w-4/12 flex flex-col gap-3">
+      <span class="text-neutral-300/50 text-lg tracking-widest">HYPE</span>
+      <section class="votes text-neutral-300 flex gap-4">
+        <div
+          class={`average flex flex-col flex-1 border-2 rounded-lg p-4 items-center justify-center text-2xl font-black ring-4	 ${voteColor(
+            movie.vote_average
+          )}`}
+        >
+          <span class="font-normal text-base tracking-wider">NOTE</span>
+          {movie.vote_average}
+        </div>
+        <div
+          class="count flex flex-1 flex-col border rounded-lg p-4 items-center justify-center text-2xl font-black"
+        >
+          <span class="font-normal text-base tracking-wider">VOTES COUNT</span>
+          {movie.vote_count}
+        </div>
+      </section>
+    </div>
+  </article>
 </Layout>
