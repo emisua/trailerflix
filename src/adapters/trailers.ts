@@ -7,8 +7,11 @@ const trailers = (trailers: Trailer[]) => {
       trailer.official &&
       trailer.type === 'Trailer' &&
       trailer.site === 'YouTube'
-    )
+    ) {
       return trailer
+    } else {
+      return trailers[0]
+    }
   })
 
   console.log({ originalTrailer })
