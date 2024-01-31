@@ -1,9 +1,10 @@
-import type { Api_Response, MovieDetails } from '../types/types'
+import trailers from '../adapters/trailers'
+import type { Api_Response, MovieDetails, TrailerResult } from '../types/types'
 
 const bearerKey: string = import.meta.env.BEARER_KEY
 
 const PREFIX_URL = 'https://api.themoviedb.org/3'
-const LANGUAGE = '?language=es-ES'
+const LANGUAGE = '?language=en-EU'
 const PAGE = '?page=1'
 
 const options = {
@@ -42,4 +43,13 @@ export async function getMovieByID(id: string) {
   )
   const movie: MovieDetails = await response.json()
   return movie
+}
+
+export async function getTrailerByID(id: string) {
+  const response = await fetch(
+    `${PREFIX_URL}/movie/${id}/videos${LANGUAGE}`,
+    options
+  )
+  const movie: TrailerResult = await response.json()
+  return trailers(movie?.results)
 }

@@ -7,7 +7,7 @@ const movieList = await getMovies()
 ---
 
 <Layout title='TrailersFLix'>
-  <main class='container mx-auto'>
+  <main class='container max-w-screen-lg mx-auto'>
     {
       movieList ? (
         <MovieList movieList={movieList} />
