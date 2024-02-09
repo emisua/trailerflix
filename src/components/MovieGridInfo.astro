@@ -7,6 +7,12 @@ const { movie } = Astro.props
 const { budget } = movie
 
 const formatedBudget = formatBudget(budget)
+const options: Intl.NumberFormatOptions = {
+  style: 'currency',
+  currency: 'EUR',
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+}
 ---
 
 <section class='grid grid-cols-4 md:grid-cols-4 md:gap-4 gap-2'>
@@ -24,12 +30,7 @@ const formatedBudget = formatBudget(budget)
   />
   <RotatedDetailCard
     category='BUDGET'
-    text={`$${formatedBudget.toLocaleString('es-ES', {
-      style: 'currency',
-      currency: 'EUR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    })}`}
+    text={`$${Number(formatedBudget).toLocaleString('es-ES', options)}`}
   />
   <RotatedDetailCard
     category='DURATION'
