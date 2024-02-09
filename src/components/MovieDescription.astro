@@ -1,0 +1,8 @@
+---
+const { movie } = Astro.props
+---
+
+<div class='overview md:w-8/12 flex flex-col gap-3'>
+  <span class='text-neutral-300/50 text-lg tracking-widest'>DESCRIPTION</span>
+  <p class='text-neutral-300'>{movie.overview}</p>
+</div>

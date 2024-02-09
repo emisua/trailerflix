@@ -1,0 +1,17 @@
+---
+import type { Genre } from '../types/types'
+
+const { movie } = Astro.props
+---
+
+<div class='genres flex gap-2'>
+  {
+    movie?.genres
+      ?.slice(1, 6)
+      ?.map((genre: Genre) => (
+        <div class='border flex rounded bg-neutral-300/10 py-1 px-2 text-xs backdrop-blur-sm text-neutral-300'>
+          {genre.name}
+        </div>
+      ))
+  }
+</div>

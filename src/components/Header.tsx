@@ -24,15 +24,15 @@ const Header = ({ fixed }: { fixed: boolean }) => {
 
   // Aplicar la clase 'fixed' condicionalmente
   const navbarClass = isFixed
-    ? 'bg-neutral-950/70 backdrop-blur-lg shadow-xl'
-    : ''
+    ? 'bg-neutral-950/70 backdrop-blur-lg shadow-xl py-2'
+    : 'py-6'
 
   return (
     <header
-      className={`${navbarClass} fixed w-full p-4 z-10 top-0 left-0 right-0 transition-all duration-500  py-6`}
+      className={`${navbarClass} fixed w-full z-10 top-0 left-0 right-0 transition-all duration-500 `}
       ref={navbarRef}
     >
-      <nav className='flex justify-between items-center gap-4 container max-w-screen-lg mx-auto '>
+      <nav className='flex justify-between items-center gap-4 container max-w-screen-lg mx-auto p-4'>
         <a
           className='logo text-white font-black text-2xl flex-1 w-1/2'
           href='/'

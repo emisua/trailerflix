@@ -1,0 +1,38 @@
+---
+import PlayIcon from '../icons/PlayIcon.astro'
+import RotatedDetailCard from './RotatedDetailCard.astro'
+import { formatBudget } from '../utils'
+
+const { movie } = Astro.props
+const { budget } = movie
+
+const formatedBudget = formatBudget(budget)
+---
+
+<section class='grid grid-cols-4 md:grid-cols-4 md:gap-4 gap-2'>
+  <div
+    class='flex text-neutral-300 gap-0 p-4 aspect-video items-center justify-center content-center rounded-2xl bg-red-600/60 backdrop-blur-sm flex-col md:flex-row'
+  >
+    <PlayIcon className='md:w-16 w-6 fill-white stroke-none' />
+  </div>
+  <RotatedDetailCard
+    category='RELEASE'
+    text={new Date(movie.release_date).toLocaleString('es-ES', {
+      timeZone: 'UTC',
+      dateStyle: 'short',
+    })}
+  />
+  <RotatedDetailCard
+    category='BUDGET'
+    text={`$${formatedBudget.toLocaleString('es-ES', {
+      style: 'currency',
+      currency: 'EUR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    })}`}
+  />
+  <RotatedDetailCard
+    category='DURATION'
+    text={`${movie.runtime} min`}
+  />
+</section>

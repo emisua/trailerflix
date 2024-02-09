@@ -1,0 +1,17 @@
+---
+const { movie } = Astro.props
+---
+
+<h1 class='text-white text-4xl font-bold flex flex-col uppercase oswald'>
+  {movie.title}
+  {
+    movie.title !== movie.original_title && (
+      <>
+        <br />
+        <span class='text-xl text-neutral-300/50 font-normal'>
+          ({movie.original_title})
+        </span>
+      </>
+    )
+  }
+</h1>

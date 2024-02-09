@@ -1,0 +1,17 @@
+---
+const { movie } = Astro.props
+const movieURL = `https://image.tmdb.org/t/p/original${movie?.backdrop_path}`
+---
+
+<section
+  class={`md:min-h-[32rem] min-h-[24rem] w-full flex gap-4 items-bottom justify-end flex-col pb-0`}
+  style={{
+    background: `linear-gradient(hsla(0, 0%, 4%, .1), hsla(0, 0%, 4%, 1)), url(${movieURL})`,
+    backgroundPosition: 'top center',
+    backgroundSize: 'cover',
+  }}
+>
+  <div class='container mx-auto flex flex-col gap-4 max-w-screen-lg px-4'>
+    <slot />
+  </div>
+</section>

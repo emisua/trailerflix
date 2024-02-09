@@ -1,131 +1,32 @@
 ---
 import { getMovieByID, getTrailerByID } from '../../api/api'
-import RotatedDetailCard from '../../components/RotatedDetailCard.astro'
-import PlayIcon from '../../icons/PlayIcon.astro'
+import MovieDescription from '../../components/MovieDescription.astro'
+import MovieGenresList from '../../components/MovieGenresList.astro'
+import MovieHeaderBackground from '../../components/MovieHeaderBackground.astro'
+import MovieTitle from '../../components/MovieTitle.astro'
+import MovieVotes from '../../components/MovieVotes.astro'
 import LayoutDetail from '../../layouts/LayoutDetail.astro'
 import LiteYouTubeEmbed from 'react-lite-youtube-embed'
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
+import MovieGridInfo from '../../components/MovieGridInfo.astro'
 
 const { id } = Astro.params
 const movie = await getMovieByID(id!)
 const trailer = await getTrailerByID(id!)
-
-console.log('esto es un trailer:', { trailer })
-
-const movieURL = `https://image.tmdb.org/t/p/original${movie?.backdrop_path}`
-
-function voteColor(note: number): string {
-  const realNote = Math.floor(note)
-  if (realNote === 1) return 'bg-red-900'
-  if (realNote === 2) return 'bg-red-800'
-  if (realNote === 3) return 'bg-red-700'
-  if (realNote === 4) return 'bg-red-600'
-  if (realNote === 5) return 'bg-orange-500'
-  if (realNote === 6) return 'bg-green-700'
-  if (realNote === 7) return 'bg-green-600'
-  if (realNote === 8) return 'bg-green-500'
-  if (realNote === 9) return 'bg-green-500'
-  if (realNote === 10) return 'bg-green-500'
-  return ''
-}
-
-console.log(movie)
 ---
 
 <LayoutDetail title={movie.original_title}>
-  <div
-    class={`md:min-h-[32rem] min-h-[24rem] w-full flex gap-4 items-bottom justify-end flex-col px-4 pb-0`}
-    style={{
-      background: `linear-gradient(hsla(0, 0%, 4%, .1), hsla(0, 0%, 4%, 1)), url(${movieURL})`,
-      backgroundPosition: 'top center',
-      backgroundSize: 'cover',
-    }}
-  >
-    <div class='container mx-auto flex flex-col gap-4 max-w-screen-lg'>
-      <h1 class='text-white text-4xl font-bold flex flex-col uppercase oswald'>
-        {movie.title}
-        {
-          movie.title !== movie.original_title && (
-            <>
-              <br />
-              <span class='text-xl text-neutral-300/50 font-normal'>
-                ({movie.original_title})
-              </span>
-            </>
-          )
-        }
-      </h1>
-      <div class='genres flex gap-2'>
-        {
-          movie.genres
-            ?.slice(1, 6)
-            ?.map((genre) => (
-              <div class='border flex rounded bg-neutral-300/10 py-1 px-2 text-xs backdrop-blur-sm text-neutral-300'>
-                {genre.name}
-              </div>
-            ))
-        }
-      </div>
-      <section class='grid grid-cols-4 md:grid-cols-4 md:gap-4 gap-2'>
-        <div
-          class='flex text-neutral-300 gap-0 p-4 aspect-video items-center justify-center content-center rounded-2xl bg-red-600/60 backdrop-blur-sm flex-col md:flex-row'
-        >
-          <PlayIcon className='md:w-16 w-6 fill-white stroke-none' />
-        </div>
-        <RotatedDetailCard
-          category='RELEASE'
-          text={new Date(movie.release_date).toLocaleString('es-ES', {
-            timeZone: 'UTC',
-            dateStyle: 'short',
-          })}
-        />
-        <RotatedDetailCard
-          category='BUDGET'
-          text={movie.budget.toLocaleString('es-ES', {
-            style: 'currency',
-            currency: 'EUR',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0,
-          })}
-        />
-        <RotatedDetailCard
-          category='DURATION'
-          text={`${movie.runtime} min`}
-        />
-      </section>
-    </div>
-  </div>
-
-  <section class='container mx-auto max-w-screen-lg flex flex-col gap-12 py-8'>
-    <article class='flex gap-16 md:flex-row flex-col'>
-      <div class='overview md:w-8/12 flex flex-col gap-3'>
-        <span class='text-neutral-300/50 text-lg tracking-widest'
-          >DESCRIPTION</span
-        >
-        <p class='text-neutral-300'>{movie.overview}</p>
-      </div>
-      <div class='rates md:w-4/12 flex flex-col gap-3'>
-        <span class='text-neutral-300/50 text-lg tracking-widest'>HYPE</span>
-        <section class='votes text-neutral-300 flex gap-4'>
-          <div
-            class={`average flex flex-col flex-1  rounded-lg p-4 items-center justify-center text-2xl font-black ${voteColor(
-              movie.vote_average
-            )}`}
-          >
-            <span class='font-normal text-base tracking-wider'>NOTE</span>
-            {movie.vote_average}
-          </div>
-          <div
-            class='count flex flex-1 flex-col rounded-lg bg-neutral-300/30 backdrop-blur-smrounded-lg p-4 items-center justify-center text-2xl font-black'
-          >
-            <span class='font-normal text-base tracking-wider'>VOTES COUNT</span
-            >
-            {movie.vote_count}
-          </div>
-        </section>
-      </div>
-    </article>
-    <article class='rounded-lg overflow-hidden'>
+  <MovieHeaderBackground movie={movie}>
+    <MovieTitle movie={movie} />
+    <MovieGenresList movie={movie} />
+    <MovieGridInfo movie={movie} />
+  </MovieHeaderBackground>
+  <div class='container mx-auto flex flex-col gap-4 max-w-screen-lg px-4'>
+    <section class='flex flex-col md:flex-row gap-12 py-8 w-full'>
+      <MovieDescription movie={movie} />
+      <MovieVotes movie={movie} />
+    </section>
+    <section class='rounded-lg overflow-hidden'>
       {
         trailer && (
           <LiteYouTubeEmbed
@@ -135,6 +36,6 @@ console.log(movie)
           />
         )
       }
-    </article>
-  </section>
+    </section>
+  </div>
 </LayoutDetail>

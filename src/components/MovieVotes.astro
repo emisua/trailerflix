@@ -1,0 +1,40 @@
+---
+const { movie } = Astro.props
+
+function voteColor(note: number): string {
+  const realNote = Math.floor(note)
+  if (realNote === 1) return 'bg-red-900'
+  if (realNote === 2) return 'bg-red-800'
+  if (realNote === 3) return 'bg-red-700'
+  if (realNote === 4) return 'bg-red-600'
+  if (realNote === 5) return 'bg-orange-500'
+  if (realNote === 6) return 'bg-green-700'
+  if (realNote === 7) return 'bg-green-600'
+  if (realNote === 8) return 'bg-green-500'
+  if (realNote === 9) return 'bg-green-500'
+  if (realNote === 10) return 'bg-green-500'
+  return ''
+}
+---
+
+<div class='rates md:w-4/12 flex flex-col gap-3'>
+  <span class='text-neutral-300/50 text-lg tracking-widest'>HYPE</span>
+  <section class='votes text-neutral-300 flex gap-4'>
+    <div
+      class={`average flex flex-col flex-1 rounded-lg p-4 items-center justify-center text-2xl font-black text-center ${voteColor(
+        movie.vote_average
+      )}`}
+    >
+      <span class='font-normal text-xs tracking-wider'>NOTE</span>
+      {movie.vote_average}
+    </div>
+    <div
+      class='count flex flex-1 flex-col rounded-lg bg-neutral-300/30 backdrop-blur-smrounded-lg p-4 items-center justify-center text-2xl font-black'
+    >
+      <span class='font-normal text-xs tracking-wider text-center'
+        >VOTES COUNT</span
+      >
+      {movie.vote_count}
+    </div>
+  </section>
+</div>
